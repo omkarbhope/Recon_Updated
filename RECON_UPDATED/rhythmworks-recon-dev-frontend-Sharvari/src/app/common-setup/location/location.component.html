@@ -1,0 +1,268 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Location</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button" (click)="showList();"><i class="fa fa-calendar"></i> List of Location</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Location</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button" (click)="showNewEntry();"><i class="fa  fa-plus"></i>Add New Location</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                            <div class="col-sm-12">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>
+                                    <i class="fa fa-search" aria-hidden="true"></i> 
+                                    Search
+                                    </mat-label>
+                                        <input matInput (keyup)='tbl_FilterDatatable($event)'>    
+                                </mat-form-field>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <input type="hidden" formControlName="id" id="id" value="[id]" class="form-control">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label>Location Name<span style="color: red;">*</span></label>
+                                                <input type="text" formControlName="location_name" class="form-control"
+                                                    placeholder="Location Name"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.location_name.errors }" />
+                                                <div *ngIf="submitted && f.location_name.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.location_name.errors.required">Location Name is required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label>Address 1</label>
+                                                <textarea formControlName="address1" value="[address1]" placeholder="Address 1" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label>Address 2</label>
+                                                <textarea formControlName="address2" value="[address2]" placeholder="Address 2" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label>Address 3</label>
+                                                <textarea formControlName="address3" value="[address3]" placeholder="Address 3" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <label class="form-label">Country<span style="color: red;">*</span></label>
+                                            <div class="form-group">
+                                                <select class="form-control" formControlName="country_id" id="Country" [ngClass]="{ 'is-invalid': submitted && f.country_id.errors }">
+                                                <option value="null">Select Country</option>
+                                                <option *ngFor="let country of countrydata" value="{{country.id}}">{{country.name}}</option>
+                                            </select>
+                                                <div *ngIf="submitted && f.country_id.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.country_id.errors.required">Country is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label class="form-label">State<span style="color: red;">*</span></label>
+                                                <select formControlName="state_id" class="form-control"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.state_id.errors }">
+                                                    <option value="null" default selected hidden>Select State</option>
+                                                    <option *ngFor="let state of statedata" value="{{ state.id }}">
+                                                        {{ state.state }}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.state_id.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.state_id.errors.required">State is
+                                                        required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label class="form-label">City<span style="color: red;">*</span></label>
+                                                <select formControlName="city_id" class="form-control"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.city_id.errors }">
+                                                    <option value="null" default selected hidden>Select City</option>
+                                                    <option *ngFor="let city of citydata" value="{{ city.id }}">
+                                                        {{ city.city_name }}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.city_id.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.city_id.errors.required">City is
+                                                        required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label class="form-label">Is Under same Management?</label>
+                                            <br> 
+                                                <label class="form-label">No</label>
+                                                <mat-slide-toggle>Yes</mat-slide-toggle>
+                                            </div>
+                                        </div>
+    
+                                      
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit" class="btn btn-primary btn-border-radius waves-effect">{{BTN_VAL}}</button>
+                                    <button type="button" class="btn btn-danger btn-border-radius waves-effect" (click)="showList();">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Location Name</th>
+                                            <th>Address 1</th>
+                                            <th>Address 2</th> 
+                                            <th>Address 3</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of locationdata">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius" (click)="editLocation(row)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius" (click)="deleteLocationData(row.id)">Delete</button>
+                                            </td>
+                                            <td>{{row.location_name}}</td>
+                                            <td>{{row.address1}}</td>
+                                            <td>{{row.address2}}</td>
+                                            <td>{{row.address3}}</td>
+                                            <td>{{row.country_name}}</td>
+                                            <td>{{row.country_name}}</td>
+                                            <td>{{row.country_name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>
+                                            <i class="fa fa-search" aria-hidden="true"></i> 
+                                            Search
+                                            </mat-label>
+                                                <input matInput (keyup)='tbl_FilterDatatable($event)'/>    
+                                            </mat-form-field>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="body">
+                                                <div class="table-responsive">
+                                                    <!--table id="tableExport">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>                                                               
+                                                            </tr>
+                                                        </thead>                            
+                                                    </table-->
+                                                    <ngx-datatable #tableExport class="material" [rows]="locationdata" [columns]="columns"
+                                                    [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                                    [rowHeight]="'60'" [limit]="10">
+                                                    
+                                                        <ngx-datatable-column name="Actions" sortable="false" [width]="120" style="padding: 0.4rem 1.2rem;">
+                                                        <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex"
+                                                            ngx-datatable-cell-template>
+                                                            <span>
+                                                                <button class="btn tblActnBtn h-auto" data-toggle="modal"
+                                                                    data-target="#editModal" (click)='editLocation(row)'>
+                                                                    <i class="material-icons">mode_edit</i>
+                                                                </button>
+                                                                <button class="btn tblActnBtn h-auto" (click)='deleteLocationData(row.id)'>
+                                                                    <i class="material-icons">delete</i>
+                                                                </button>
+                                                            </span>
+                                                        </ng-template>
+                                                        </ngx-datatable-column>
+                                                        <ngx-datatable-column name="Location" prop="location_name"></ngx-datatable-column>
+                                                        <ngx-datatable-column name="Address1" prop="address1"></ngx-datatable-column>
+                                                        <ngx-datatable-column name="Address2" prop="address2"></ngx-datatable-column>
+                                                        <ngx-datatable-column name="Address3" prop="address3"></ngx-datatable-column>
+                                                        <ngx-datatable-column name="Country" prop="country_name"></ngx-datatable-column>
+                                                        <ngx-datatable-column name="State" prop="country_name"></ngx-datatable-column>
+                                                        <ngx-datatable-column name="City" prop="country_name"></ngx-datatable-column>
+                                                    </ngx-datatable> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

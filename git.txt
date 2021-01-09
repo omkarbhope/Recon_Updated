@@ -1,0 +1,536 @@
+Microsoft Windows [Version 10.0.19041.685]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git init
+Initialized empty Git repository in E:/RECON_UPDATED/Backend/rhythmworks_recon/.git/
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git remote add origin https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend.git
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git add .
+warning: LF will be replaced by CRLF in data/redbus_2.csv.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in data/redbus_mantis_2.csv.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in manage.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/admin.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/apps.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/custom_jwt.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0001_initial.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0002_auto_20201020_1246.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0003_auto_20201020_1405.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0004_auto_20201020_1411.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0005_auto_20201020_1509.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0006_auto_20201020_1518.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0007_auto_20201020_1520.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0008_auto_20201020_1920.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0009_auto_20201021_1209.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0010_auto_20201022_1348.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0011_auto_20201022_1454.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0012_auto_20201022_1733.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0013_remove_tbl_api_definition_mst_self_channel_ref_id.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0014_tbl_api_definition_mst_self_channel_ref_id.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0015_tbl_reason_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0016_auto_20201023_1731.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0017_auto_20201023_1831.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0018_auto_20201027_1440.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0019_auto_20201027_1641.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0020_auto_20201027_1830.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0021_auto_20201027_2311.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0022_auto_20201028_1823.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0023_delete_tbl_employee_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0024_tbl_employee_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0025_auto_20201029_1046.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0026_auto_20201029_1114.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0027_auto_20201029_1313.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0028_auto_20201029_1316.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0029_auto_20201029_1457.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0030_auto_20201029_1458.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0031_auto_20201029_1706.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0032_auto_20201030_1147.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0033_tbl_workflow_activity_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0034_auto_20201031_2045.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0035_tbl_workflow_action_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0036_tbl_workflow_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0037_tbl_sourcetable_fields_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0038_auto_20201103_1846.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0039_auto_20201103_1848.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0040_auto_20201104_1724.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0041_auto_20201105_1415.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0042_auto_20201105_1420.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0043_auto_20201105_1425.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0044_auto_20201105_1438.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0045_tbl_workflow_level_data_details_tbl_workflow_level_data_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0046_delete_tbl_transaction_type_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0047_tbl_transaction_type_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0048_auto_20201117_2001.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0049_auto_20201120_1151.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0050_auto_20201120_1242.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0051_auto_20201123_1354.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0052_auto_20201123_1606.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0053_auto_20201204_1604.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0054_tbl_workflow_level_data_mst.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0055_tbl_workflow_level_data_details.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0056_auto_20201211_1928.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0057_auto_20201211_1929.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0058_auto_20201211_1930.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0059_auto_20201211_1932.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0060_tbl_workflow_details_tbl_workflow_sub_details.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0061_auto_20201211_1943.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0062_auto_20201221_1927.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/migrations/0063_auto_20201226_1722.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/serializers.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/tests.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/urls.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in portal/views.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in rhythmworks_recon/asgi.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in rhythmworks_recon/settings.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in rhythmworks_recon/urls.py.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in rhythmworks_recon/wsgi.py.
+The file will have its original line endings in your working directory
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git commit -m 'added workflow'
+error: pathspec 'workflow'' did not match any file(s) known to git
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   data/redbus_2.csv
+        new file:   data/redbus_mantis_2.csv
+        new file:   db.sqlite3
+        new file:   manage.py
+        new file:   portal/__init__.py
+        new file:   portal/__pycache__/__init__.cpython-36.pyc
+        new file:   portal/__pycache__/admin.cpython-36.pyc
+        new file:   portal/__pycache__/custom_jwt.cpython-36.pyc
+        new file:   portal/__pycache__/models.cpython-36.pyc
+        new file:   portal/__pycache__/serializers.cpython-36.pyc
+        new file:   portal/__pycache__/urls.cpython-36.pyc
+        new file:   portal/__pycache__/views.cpython-36.pyc
+        new file:   portal/admin.py
+        new file:   portal/apps.py
+        new file:   portal/custom_jwt.py
+        new file:   portal/migrations/0001_initial.py
+        new file:   portal/migrations/0002_auto_20201020_1246.py
+        new file:   portal/migrations/0003_auto_20201020_1405.py
+        new file:   portal/migrations/0004_auto_20201020_1411.py
+        new file:   portal/migrations/0005_auto_20201020_1509.py
+        new file:   portal/migrations/0006_auto_20201020_1518.py
+        new file:   portal/migrations/0007_auto_20201020_1520.py
+        new file:   portal/migrations/0008_auto_20201020_1920.py
+        new file:   portal/migrations/0009_auto_20201021_1209.py
+        new file:   portal/migrations/0010_auto_20201022_1348.py
+        new file:   portal/migrations/0011_auto_20201022_1454.py
+        new file:   portal/migrations/0012_auto_20201022_1733.py
+        new file:   portal/migrations/0013_remove_tbl_api_definition_mst_self_channel_ref_id.py
+        new file:   portal/migrations/0014_tbl_api_definition_mst_self_channel_ref_id.py
+        new file:   portal/migrations/0015_tbl_reason_mst.py
+        new file:   portal/migrations/0016_auto_20201023_1731.py
+        new file:   portal/migrations/0017_auto_20201023_1831.py
+        new file:   portal/migrations/0018_auto_20201027_1440.py
+        new file:   portal/migrations/0019_auto_20201027_1641.py
+        new file:   portal/migrations/0020_auto_20201027_1830.py
+        new file:   portal/migrations/0021_auto_20201027_2311.py
+        new file:   portal/migrations/0022_auto_20201028_1823.py
+        new file:   portal/migrations/0023_delete_tbl_employee_mst.py
+        new file:   portal/migrations/0024_tbl_employee_mst.py
+        new file:   portal/migrations/0025_auto_20201029_1046.py
+        new file:   portal/migrations/0026_auto_20201029_1114.py
+        new file:   portal/migrations/0027_auto_20201029_1313.py
+        new file:   portal/migrations/0028_auto_20201029_1316.py
+        new file:   portal/migrations/0029_auto_20201029_1457.py
+        new file:   portal/migrations/0030_auto_20201029_1458.py
+        new file:   portal/migrations/0031_auto_20201029_1706.py
+        new file:   portal/migrations/0032_auto_20201030_1147.py
+        new file:   portal/migrations/0033_tbl_workflow_activity_mst.py
+        new file:   portal/migrations/0034_auto_20201031_2045.py
+        new file:   portal/migrations/0035_tbl_workflow_action_mst.py
+        new file:   portal/migrations/0036_tbl_workflow_mst.py
+        new file:   portal/migrations/0037_tbl_sourcetable_fields_mst.py
+        new file:   portal/migrations/0038_auto_20201103_1846.py
+        new file:   portal/migrations/0039_auto_20201103_1848.py
+        new file:   portal/migrations/0040_auto_20201104_1724.py
+        new file:   portal/migrations/0041_auto_20201105_1415.py
+        new file:   portal/migrations/0042_auto_20201105_1420.py
+        new file:   portal/migrations/0043_auto_20201105_1425.py
+        new file:   portal/migrations/0044_auto_20201105_1438.py
+        new file:   portal/migrations/0045_tbl_workflow_level_data_details_tbl_workflow_level_data_mst.py
+        new file:   portal/migrations/0046_delete_tbl_transaction_type_mst.py
+        new file:   portal/migrations/0047_tbl_transaction_type_mst.py
+        new file:   portal/migrations/0048_auto_20201117_2001.py
+        new file:   portal/migrations/0049_auto_20201120_1151.py
+        new file:   portal/migrations/0050_auto_20201120_1242.py
+        new file:   portal/migrations/0051_auto_20201123_1354.py
+        new file:   portal/migrations/0052_auto_20201123_1606.py
+        new file:   portal/migrations/0053_auto_20201204_1604.py
+        new file:   portal/migrations/0054_tbl_workflow_level_data_mst.py
+        new file:   portal/migrations/0055_tbl_workflow_level_data_details.py
+        new file:   portal/migrations/0056_auto_20201211_1928.py
+        new file:   portal/migrations/0057_auto_20201211_1929.py
+        new file:   portal/migrations/0058_auto_20201211_1930.py
+        new file:   portal/migrations/0059_auto_20201211_1932.py
+        new file:   portal/migrations/0060_tbl_workflow_details_tbl_workflow_sub_details.py
+        new file:   portal/migrations/0061_auto_20201211_1943.py
+        new file:   portal/migrations/0062_auto_20201221_1927.py
+        new file:   portal/migrations/0063_auto_20201226_1722.py
+        new file:   portal/migrations/__init__.py
+        new file:   portal/migrations/__pycache__/0001_initial.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0002_auto_20201020_1246.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0003_auto_20201020_1405.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0004_auto_20201020_1411.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0005_auto_20201020_1509.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0006_auto_20201020_1518.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0007_auto_20201020_1520.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0008_auto_20201020_1920.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0009_auto_20201021_1209.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0010_auto_20201022_1348.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0011_auto_20201022_1454.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0012_auto_20201022_1733.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0013_remove_tbl_api_definition_mst_self_channel_ref_id.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0014_tbl_api_definition_mst_self_channel_ref_id.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0015_tbl_reason_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0016_auto_20201023_1731.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0017_auto_20201023_1831.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0018_auto_20201027_1440.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0019_auto_20201027_1641.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0020_auto_20201027_1830.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0021_auto_20201027_2311.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0022_auto_20201028_1823.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0023_delete_tbl_employee_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0024_tbl_employee_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0025_auto_20201029_1046.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0026_auto_20201029_1114.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0027_auto_20201029_1313.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0028_auto_20201029_1316.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0029_auto_20201029_1457.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0030_auto_20201029_1458.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0031_auto_20201029_1706.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0032_auto_20201030_1147.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0033_tbl_workflow_activity_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0034_auto_20201031_2045.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0035_tbl_workflow_action_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0036_tbl_workflow_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0037_tbl_sourcetable_fields_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0038_auto_20201103_1846.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0039_auto_20201103_1848.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0040_auto_20201104_1724.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0041_auto_20201105_1415.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0042_auto_20201105_1420.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0043_auto_20201105_1425.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0044_auto_20201105_1438.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0045_tbl_workflow_level_data_details_tbl_workflow_level_data_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0046_delete_tbl_transaction_type_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0047_tbl_transaction_type_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0048_auto_20201117_2001.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0049_auto_20201120_1151.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0050_auto_20201120_1242.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0051_auto_20201123_1354.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0052_auto_20201123_1606.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0053_auto_20201204_1604.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0054_tbl_workflow_level_data_mst.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0055_tbl_workflow_level_data_details.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0056_auto_20201211_1928.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0057_auto_20201211_1929.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0058_auto_20201211_1930.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0059_auto_20201211_1932.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0060_tbl_workflow_details_tbl_workflow_sub_details.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0061_auto_20201211_1943.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0062_auto_20201221_1927.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/0063_auto_20201226_1722.cpython-36.pyc
+        new file:   portal/migrations/__pycache__/__init__.cpython-36.pyc
+        new file:   portal/models.py
+        new file:   portal/serializers.py
+        new file:   portal/tests.py
+        new file:   portal/urls.py
+        new file:   portal/views.py
+        new file:   rhythmworks_recon/__init__.py
+        new file:   rhythmworks_recon/__pycache__/__init__.cpython-36.pyc
+        new file:   rhythmworks_recon/__pycache__/settings.cpython-36.pyc
+        new file:   rhythmworks_recon/__pycache__/urls.cpython-36.pyc
+        new file:   rhythmworks_recon/__pycache__/wsgi.cpython-36.pyc
+        new file:   rhythmworks_recon/asgi.py
+        new file:   rhythmworks_recon/settings.py
+        new file:   rhythmworks_recon/urls.py
+        new file:   rhythmworks_recon/wsgi.py
+        new file:   test_file.py
+
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git commit -m 'added workflow'
+error: pathspec 'workflow'' did not match any file(s) known to git
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git commit -m 'v1'
+[master (root-commit) 0429e51] 'v1'
+ 158 files changed, 7900 insertions(+)
+ create mode 100644 data/redbus_2.csv
+ create mode 100644 data/redbus_mantis_2.csv
+ create mode 100644 db.sqlite3
+ create mode 100644 manage.py
+ create mode 100644 portal/__init__.py
+ create mode 100644 portal/__pycache__/__init__.cpython-36.pyc
+ create mode 100644 portal/__pycache__/admin.cpython-36.pyc
+ create mode 100644 portal/__pycache__/custom_jwt.cpython-36.pyc
+ create mode 100644 portal/__pycache__/models.cpython-36.pyc
+ create mode 100644 portal/__pycache__/serializers.cpython-36.pyc
+ create mode 100644 portal/__pycache__/urls.cpython-36.pyc
+ create mode 100644 portal/__pycache__/views.cpython-36.pyc
+ create mode 100644 portal/admin.py
+ create mode 100644 portal/apps.py
+ create mode 100644 portal/custom_jwt.py
+ create mode 100644 portal/migrations/0001_initial.py
+ create mode 100644 portal/migrations/0002_auto_20201020_1246.py
+ create mode 100644 portal/migrations/0003_auto_20201020_1405.py
+ create mode 100644 portal/migrations/0004_auto_20201020_1411.py
+ create mode 100644 portal/migrations/0005_auto_20201020_1509.py
+ create mode 100644 portal/migrations/0006_auto_20201020_1518.py
+ create mode 100644 portal/migrations/0007_auto_20201020_1520.py
+ create mode 100644 portal/migrations/0008_auto_20201020_1920.py
+ create mode 100644 portal/migrations/0009_auto_20201021_1209.py
+ create mode 100644 portal/migrations/0010_auto_20201022_1348.py
+ create mode 100644 portal/migrations/0011_auto_20201022_1454.py
+ create mode 100644 portal/migrations/0012_auto_20201022_1733.py
+ create mode 100644 portal/migrations/0013_remove_tbl_api_definition_mst_self_channel_ref_id.py
+ create mode 100644 portal/migrations/0014_tbl_api_definition_mst_self_channel_ref_id.py
+ create mode 100644 portal/migrations/0015_tbl_reason_mst.py
+ create mode 100644 portal/migrations/0016_auto_20201023_1731.py
+ create mode 100644 portal/migrations/0017_auto_20201023_1831.py
+ create mode 100644 portal/migrations/0018_auto_20201027_1440.py
+ create mode 100644 portal/migrations/0019_auto_20201027_1641.py
+ create mode 100644 portal/migrations/0020_auto_20201027_1830.py
+ create mode 100644 portal/migrations/0021_auto_20201027_2311.py
+ create mode 100644 portal/migrations/0022_auto_20201028_1823.py
+ create mode 100644 portal/migrations/0023_delete_tbl_employee_mst.py
+ create mode 100644 portal/migrations/0024_tbl_employee_mst.py
+ create mode 100644 portal/migrations/0025_auto_20201029_1046.py
+ create mode 100644 portal/migrations/0026_auto_20201029_1114.py
+ create mode 100644 portal/migrations/0027_auto_20201029_1313.py
+ create mode 100644 portal/migrations/0028_auto_20201029_1316.py
+ create mode 100644 portal/migrations/0029_auto_20201029_1457.py
+ create mode 100644 portal/migrations/0030_auto_20201029_1458.py
+ create mode 100644 portal/migrations/0031_auto_20201029_1706.py
+ create mode 100644 portal/migrations/0032_auto_20201030_1147.py
+ create mode 100644 portal/migrations/0033_tbl_workflow_activity_mst.py
+ create mode 100644 portal/migrations/0034_auto_20201031_2045.py
+ create mode 100644 portal/migrations/0035_tbl_workflow_action_mst.py
+ create mode 100644 portal/migrations/0036_tbl_workflow_mst.py
+ create mode 100644 portal/migrations/0037_tbl_sourcetable_fields_mst.py
+ create mode 100644 portal/migrations/0038_auto_20201103_1846.py
+ create mode 100644 portal/migrations/0039_auto_20201103_1848.py
+ create mode 100644 portal/migrations/0040_auto_20201104_1724.py
+ create mode 100644 portal/migrations/0041_auto_20201105_1415.py
+ create mode 100644 portal/migrations/0042_auto_20201105_1420.py
+ create mode 100644 portal/migrations/0043_auto_20201105_1425.py
+ create mode 100644 portal/migrations/0044_auto_20201105_1438.py
+ create mode 100644 portal/migrations/0045_tbl_workflow_level_data_details_tbl_workflow_level_data_mst.py
+ create mode 100644 portal/migrations/0046_delete_tbl_transaction_type_mst.py
+ create mode 100644 portal/migrations/0047_tbl_transaction_type_mst.py
+ create mode 100644 portal/migrations/0048_auto_20201117_2001.py
+ create mode 100644 portal/migrations/0049_auto_20201120_1151.py
+ create mode 100644 portal/migrations/0050_auto_20201120_1242.py
+ create mode 100644 portal/migrations/0051_auto_20201123_1354.py
+ create mode 100644 portal/migrations/0052_auto_20201123_1606.py
+ create mode 100644 portal/migrations/0053_auto_20201204_1604.py
+ create mode 100644 portal/migrations/0054_tbl_workflow_level_data_mst.py
+ create mode 100644 portal/migrations/0055_tbl_workflow_level_data_details.py
+ create mode 100644 portal/migrations/0056_auto_20201211_1928.py
+ create mode 100644 portal/migrations/0057_auto_20201211_1929.py
+ create mode 100644 portal/migrations/0058_auto_20201211_1930.py
+ create mode 100644 portal/migrations/0059_auto_20201211_1932.py
+ create mode 100644 portal/migrations/0060_tbl_workflow_details_tbl_workflow_sub_details.py
+ create mode 100644 portal/migrations/0061_auto_20201211_1943.py
+ create mode 100644 portal/migrations/0062_auto_20201221_1927.py
+ create mode 100644 portal/migrations/0063_auto_20201226_1722.py
+ create mode 100644 portal/migrations/__init__.py
+ create mode 100644 portal/migrations/__pycache__/0001_initial.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0002_auto_20201020_1246.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0003_auto_20201020_1405.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0004_auto_20201020_1411.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0005_auto_20201020_1509.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0006_auto_20201020_1518.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0007_auto_20201020_1520.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0008_auto_20201020_1920.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0009_auto_20201021_1209.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0010_auto_20201022_1348.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0011_auto_20201022_1454.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0012_auto_20201022_1733.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0013_remove_tbl_api_definition_mst_self_channel_ref_id.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0014_tbl_api_definition_mst_self_channel_ref_id.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0015_tbl_reason_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0016_auto_20201023_1731.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0017_auto_20201023_1831.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0018_auto_20201027_1440.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0019_auto_20201027_1641.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0020_auto_20201027_1830.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0021_auto_20201027_2311.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0022_auto_20201028_1823.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0023_delete_tbl_employee_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0024_tbl_employee_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0025_auto_20201029_1046.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0026_auto_20201029_1114.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0027_auto_20201029_1313.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0028_auto_20201029_1316.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0029_auto_20201029_1457.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0030_auto_20201029_1458.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0031_auto_20201029_1706.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0032_auto_20201030_1147.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0033_tbl_workflow_activity_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0034_auto_20201031_2045.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0035_tbl_workflow_action_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0036_tbl_workflow_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0037_tbl_sourcetable_fields_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0038_auto_20201103_1846.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0039_auto_20201103_1848.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0040_auto_20201104_1724.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0041_auto_20201105_1415.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0042_auto_20201105_1420.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0043_auto_20201105_1425.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0044_auto_20201105_1438.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0045_tbl_workflow_level_data_details_tbl_workflow_level_data_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0046_delete_tbl_transaction_type_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0047_tbl_transaction_type_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0048_auto_20201117_2001.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0049_auto_20201120_1151.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0050_auto_20201120_1242.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0051_auto_20201123_1354.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0052_auto_20201123_1606.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0053_auto_20201204_1604.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0054_tbl_workflow_level_data_mst.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0055_tbl_workflow_level_data_details.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0056_auto_20201211_1928.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0057_auto_20201211_1929.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0058_auto_20201211_1930.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0059_auto_20201211_1932.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0060_tbl_workflow_details_tbl_workflow_sub_details.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0061_auto_20201211_1943.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0062_auto_20201221_1927.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/0063_auto_20201226_1722.cpython-36.pyc
+ create mode 100644 portal/migrations/__pycache__/__init__.cpython-36.pyc
+ create mode 100644 portal/models.py
+ create mode 100644 portal/serializers.py
+ create mode 100644 portal/tests.py
+ create mode 100644 portal/urls.py
+ create mode 100644 portal/views.py
+ create mode 100644 rhythmworks_recon/__init__.py
+ create mode 100644 rhythmworks_recon/__pycache__/__init__.cpython-36.pyc
+ create mode 100644 rhythmworks_recon/__pycache__/settings.cpython-36.pyc
+ create mode 100644 rhythmworks_recon/__pycache__/urls.cpython-36.pyc
+ create mode 100644 rhythmworks_recon/__pycache__/wsgi.cpython-36.pyc
+ create mode 100644 rhythmworks_recon/asgi.py
+ create mode 100644 rhythmworks_recon/settings.py
+ create mode 100644 rhythmworks_recon/urls.py
+ create mode 100644 rhythmworks_recon/wsgi.py
+ create mode 100644 test_file.py
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git push origin master:Omkar
+To https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend.git
+ ! [rejected]        master -> Omkar (fetch first)
+error: failed to push some refs to 'https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git push origin Sharvari:Omkar
+error: src refspec Sharvari does not match any
+error: failed to push some refs to 'https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend.git'
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git push origin Omkar
+error: src refspec Omkar does not match any
+error: failed to push some refs to 'https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend.git'
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git branch -M OmkarBhope
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>git push -u origin OmkarBhope
+Enumerating objects: 165, done.
+Counting objects: 100% (165/165), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (163/163), done.
+Writing objects: 100% (165/165), 148.52 KiB | 2.22 MiB/s, done.
+Total 165 (delta 77), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (77/77), done.
+remote:
+remote: To create a merge request for OmkarBhope, visit:
+remote:   https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend/-/merge_requests/new?merge_request%5Bsource_branch%5D=OmkarBhope
+remote:
+To https://gitlab.com/sharvaripawar.mvpr/rhythmworks-recon-dev-backend.git
+ * [new branch]      OmkarBhope -> OmkarBhope
+Branch 'OmkarBhope' set up to track remote branch 'OmkarBhope' from 'origin'.
+
+E:\RECON_UPDATED\Backend\rhythmworks_recon>

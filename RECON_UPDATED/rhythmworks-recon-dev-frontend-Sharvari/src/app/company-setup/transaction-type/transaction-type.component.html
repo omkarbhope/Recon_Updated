@@ -1,0 +1,252 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 100%;">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Transaction Type Master</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList();"><i class="fa fa-calendar"></i> List of Transaction Type Master
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Transaction Type Master</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry"
+                                style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry();"><i class="fa  fa-plus"></i>Add New Transaction Type Master
+                                            </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit($event)">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <input type="hidden" formControlName="ID" id="ID" value="[ID]" class="form-control">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Transaction Type Master</label>
+                                            <input type="text" formControlName="transaction_name" class="form-control"
+                                                placeholder="Transaction Type Master"
+                                                [ngClass]="{ 'is-invalid': submitted && f.transaction_name.errors }" />
+                                            <div *ngIf="submitted && f.transaction_name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.transaction_name.errors.required">Transaction Type Master is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Accounting Required </label>
+                                            <br>
+                                            <label class="form-label">No</label>
+                                            <mat-slide-toggle formControlName='is_accounting_required'>Yes
+                                            </mat-slide-toggle>
+                                            <div *ngIf="submitted && f.is_accounting_required.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.is_accounting_required.errors.required">Field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                   
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Header Table Name </label>
+                                            <select formControlName="tbl_transaction_header" class="form-control"
+                                                placeholder="Header Table Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tbl_transaction_header.errors }">
+                                                <option value="null" default selected hidden>Select Header Table Name</option>
+                                                <option *ngFor="let tablename of tablenameData" value="{{ tablename.table_name }}">
+                                                    {{ tablename.table_name }}</option>
+                                                <option value=-1>Header Table Name</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.tbl_transaction_header.errors" class="invalid-feedback">
+                                                <div *ngIf="f.tbl_transaction_header.errors.required">Header Table Name is
+                                                    required</div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Header Field Name</label>
+                                            <select formControlName="tbl_transaction_header_field" class="form-control"
+                                            placeholder="Header Field Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tbl_transaction_header_field.errors }">
+                                               <option value="null" default selected hidden>Select Header Field Name</option>
+                                                <option *ngFor="let headerfieldname of HeaderFieldNameData" value="{{ headerfieldname.column_name }}">
+                                                    {{ headerfieldname.column_name }}</option>
+                                                <option value=-1>Header Field Name</option>  
+                                            </select>
+                                            <div *ngIf="submitted && f.tbl_transaction_header_field.errors" class="invalid-feedback">
+                                                <div *ngIf="f.tbl_transaction_header_field.errors.required">Header Field Name is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Detail Table Name</label>
+                                            <select formControlName="tbl_transaction_details" class="form-control"
+                                            placeholder="Detail Table Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tbl_transaction_details.errors }">
+                                                <option value="null" default selected hidden>Select Detail Table Name</option>
+                                                 <option *ngFor="let tablename of tablenameData" value="{{ tablename.table_name }}">
+                                                    {{ tablename.table_name }}</option>
+                                                <option value=-1>Detail Table Name</option>                                                
+                                            </select>
+                                            <div *ngIf="submitted && f.tbl_transaction_details.errors" class="invalid-feedback">
+                                                <div *ngIf="f.tbl_transaction_details.errors.required">Detail Table Name is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Detail Field Name</label>
+                                            <select formControlName="tbl_transaction_details_field" class="form-control"
+                                            placeholder="Detail Field Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tbl_transaction_details_field.errors }">
+                                                <option value="null" default selected hidden>Select Detail Field Name</option>
+                                                <option *ngFor="let detailfieldname of DetailFieldNameData" value="{{ detailfieldname.column_name }}">
+                                                    {{ detailfieldname.column_name }}</option>
+                                                <option value=-1>Detail Field Name</option>  
+                                            </select>
+                                            <div *ngIf="submitted && f.tbl_transaction_details_field.errors" class="invalid-feedback">
+                                                <div *ngIf="f.tbl_transaction_details_field.errors.required">Detail Field Name is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>  
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Join Condition</label>
+                                            <input type="text" formControlName="join_condition" class="form-control"
+                                                placeholder="Join Condition"
+                                                [ngClass]="{ 'is-invalid': submitted && f.join_condition.errors }" />
+                                            <div *ngIf="submitted && f.join_condition.errors" class="invalid-feedback">
+                                                <div *ngIf="f.join_condition.errors.required">Join Condition is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+  
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Accounting Table Name</label>
+                                            <select formControlName="tbl_accounting" class="form-control"
+                                            placeholder="Accounting Table Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tbl_accounting.errors }">
+                                                <option value="null" default selected hidden>Select Accounting Table Name</option>
+                                                 <option *ngFor="let tablename of tablenameData" value="{{ tablename.table_name }}">
+                                                    {{ tablename.table_name }}</option>
+                                                <option value=-1>Accounting Table Name</option>  
+                                            </select>
+                                            <div *ngIf="submitted && f.tbl_accounting.errors" class="invalid-feedback">
+                                                <div *ngIf="f.tbl_accounting.errors.required">Accounting Table Name is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>                      
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-border-radius waves-effect">{{BTN_VAL}}</button>
+                                    <button type="button" class="btn btn-danger btn-border-radius waves-effect"
+                                        (click)="cancelForm()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>
+                                            <i class="fa fa-search" aria-hidden="true"></i> 
+                                            Search
+                                            </mat-label>
+                                                <input matInput (keyup)='tbl_FilterDatatable($event)'/>    
+                                            </mat-form-field>
+                                    </div>
+  
+                                    <ngx-datatable #table class="material" [rows]="transactiontypeData" [columns]="columns"
+                                    [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                    [rowHeight]="'60'" [limit]="10">
+                                    
+                                        <ngx-datatable-column name="Actions" sortable="false" [width]="120" style="padding: 0.4rem 1.2rem;">
+                                          <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex"
+                                              ngx-datatable-cell-template>
+                                              <span>
+                                                  <button class="btn tblActnBtn h-auto" data-toggle="modal"
+                                                      data-target="#editModal" (click)='editTransactionTypeData(row)'>
+                                                      <i class="material-icons">mode_edit</i>
+                                                  </button>
+                                                  <button class="btn tblActnBtn h-auto" (click)='deleteTransactionTypeData(row)'>
+                                                      <i class="material-icons">delete</i>
+                                                  </button>
+                                              </span>
+                                          </ng-template>
+                                        </ngx-datatable-column>
+                                            <ngx-datatable-column name="Transaction Type Master" prop="transaction_name"></ngx-datatable-column>
+                                            <ngx-datatable-column name="Header Table Name" prop="tbl_transaction_header"></ngx-datatable-column>
+                                            <ngx-datatable-column name="Header Field Name" prop="tbl_transaction_header_field"></ngx-datatable-column>
+                                            <ngx-datatable-column name="Detail Table Name" prop="tbl_transaction_details"></ngx-datatable-column>                                        
+                                            <ngx-datatable-column name="Detail Field Name" prop="tbl_transaction_details_field"></ngx-datatable-column>
+                                            <ngx-datatable-column name="Join Condition" prop="join_condition"></ngx-datatable-column>
+                                            <ngx-datatable-column name="Accounting Table Name" prop="tbl_accounting"></ngx-datatable-column>      
+                                    </ngx-datatable>                                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

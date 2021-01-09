@@ -1,0 +1,170 @@
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Schedule Batch</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry()"><i class="fa fa-plus"></i>Add New Schedule Process</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Schedule process</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList()"><i class="fa fa-calendar"></i>List of Schedule Process</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List Of Schedule Batch -->
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Process Name</th>
+                                            <th>Frequency</th>
+                                            <th>Start Time</th>
+                                            <th>Planned Execution</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let rowData of scheduleBatchMstData">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius" (click)="editScheduleBatch(rowData)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius" (click)="deleteScheduleBatch(rowData)">Delete</button>
+                                            </td>
+                                            <td>{{rowData.process_name}}</td>
+                                            <td>{{rowData.frequency_type}}</td>
+                                            <td>{{rowData.start_time}}</td>
+                                            <td>{{rowData.planned_execution_ref_id}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="scheduleBatchForm" (ngSubmit)="onSubmit()">
+                        <div class="card">
+                            <div class="body">
+
+                                <div class="row clearfix">
+
+                                    <input type="hidden" formControlName="id" id="id" [value]="" class="form-control">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Process Name</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="process_ref_id" formControlName="process_ref_id"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.process_ref_id.errors }">
+                                            <option value="">Select Process Name</option>
+                                            <option [value]="data.id" *ngFor="let data of reconProcessMasterData">{{data.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.process_ref_id.errors" class="invalid-feedback">
+                                            <div *ngIf="f.process_ref_id.errors.required">Process Name is required</div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Frequency Type</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="frequency_ref_id" formControlName="frequency_ref_id"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.frequency_ref_id.errors }">
+                                            <option value="">Select Frequency Type</option>
+                                            <option [value]="data.id" *ngFor="let data of frequencyType">{{data.master_key}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.frequency_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.frequency_ref_id.errors.required">Frequency is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Start Time</label>
+                                        <div class="form-group">
+                                            <input type="datetime-local" class="form-control" id="start_time" formControlName="start_time" 
+                                                   [ngClass]="{ 'is-invalid': submitted && f.start_time.errors }">
+                                            <div *ngIf="submitted && f.start_time.errors" class="invalid-feedback">
+                                                <div *ngIf="f.start_time.errors.required">Start Time is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Planned Execution</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="planned_execution_ref_id" formControlName="planned_execution_ref_id" 
+                                                   [ngClass]="{ 'is-invalid': submitted && f.planned_execution_ref_id.errors }">
+                                            <div *ngIf="submitted && f.planned_execution_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.planned_execution_ref_id.errors.required">Planned Execution is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit" class="btn btn-primary btn-border-radius waves-effect">{{btnValue}}</button>
+                                    <button type="button" (click)="showList()" class="btn btn-danger btn-border-radius waves-effect">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>

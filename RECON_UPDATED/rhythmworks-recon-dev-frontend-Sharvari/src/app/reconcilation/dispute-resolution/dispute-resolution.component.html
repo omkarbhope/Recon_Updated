@@ -1,0 +1,115 @@
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Dispute Resolution</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List of Dispute Resolution -->
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="disputeResolutionForm">
+
+                        <div class="card">
+                            <div class="body">
+
+                                <div class="row clearfix">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Reconciliation Name</label>
+                                        <div class="form-group">
+                                            <select id="reconcilation_ref_id" class="form-control"
+                                                (change)="filterSourcesNames($event.target.value)">
+                                                <option value="">Select Reconcilation Name</option>
+                                                <option [value]="data.id" *ngFor="let data of reconDefMstData"
+                                                    [attr.reconTypeRefID]="data.recon_type_ref_id">{{data.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Company</label>
+                                        <input readonly class="form-control" id="company_ref_id_text">
+                                        <input hidden class="form-control" id="company_ref_id" formControlName="company_ref_id">
+                                    </div> -->
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Company</label>
+                                        <div class="form-group">
+                                            <select id="company_name" class="form-control"
+                                                formControlName="company_ref_id">
+                                                <option value="">Select Company Name</option>
+                                                <option [value]="data.id" *ngFor="let data of companyData">
+                                                    {{data.company_name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Channel</label>
+                                        <div class="form-group">
+                                            <select id="channel_name" class="form-control"
+                                                formControlName="channel_ref_id">
+                                                <option value="">Select Channel Name</option>
+                                                <option [value]="data.id" *ngFor="let data of channelData">{{data.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">As of Date</label>
+                                        <div class="form-group">
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <h5 style="text-align: center;"><strong>Grid Structure</strong>
+                        <hr style="border: 1px solid;color:#0f4f8e;">
+                    </h5><br>
+
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="body">
+
+                                    <div class="table-responsive" id="detailed-data">
+                                        <table id="tableExport"
+                                            class="display table table-hover table-checkable order-column m-t-20 width-per-100 table-bordered">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,341 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Employees Registration</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button" (click)="showList();"><i class="fa fa-calendar"></i> List of Employees</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Employees</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button" (click)="showNewEntry();"><i class="fa  fa-plus"></i>Add New Employees</button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <ul class="header-dropdown mr-5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">Action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">Something else here</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="onRegister()">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Company</mat-label>
+                                            <mat-select formControlName="company_ref_id" required>
+                                                <mat-option [value]="">
+                                                    Select Country
+                                                </mat-option>
+                                                <mat-option [value]="data.id" *ngFor="let data of companyData">
+                                                    {{data.company_name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-icon matSuffix>business</mat-icon>
+                            
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Employee ID</mat-label>
+                                            <input matInput formControlName="employee_seq_no" required>
+                                            <mat-icon matSuffix>person</mat-icon>
+                                            <mat-error *ngIf="register.get('employee_seq_no').hasError('required')">
+                                                Employee ID is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div> 
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Role</mat-label>
+                                            <mat-select formControlName="role_ref_id" required>
+                                                <mat-option [value]="">
+                                                    Select Role
+                                                </mat-option>
+                                                <mat-option [value]="data.id" *ngFor="let data of roleData">
+                                                    {{data.role_name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-icon matSuffix>verified</mat-icon>
+                            
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>First name</mat-label>
+                                            <input matInput formControlName="first_name" required>
+                                            <mat-icon matSuffix>face</mat-icon>
+                                            <mat-error *ngIf="register.get('first_name').hasError('required')">
+                                                First name is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Middle name</mat-label>
+                                            <input matInput formControlName="middle_name">
+                                            <mat-icon matSuffix>face</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Last name</mat-label>
+                                            <input matInput formControlName="last_name">
+                                            <mat-icon matSuffix>face</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Phone Number</mat-label>
+                                            <input matInput formControlName="phone" required>
+                                            <mat-icon matSuffix>phone</mat-icon>
+                                            <mat-error *ngIf="register.get('phone').hasError('pattern')">
+                                                Phone number should be between 7000000000 - 9999999999
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Pincode</mat-label>
+                                            <input matInput formControlName="pincode" required>
+                                            <mat-icon matSuffix>Employees_on</mat-icon>
+                                            <mat-error *ngIf="register.get('pincode').hasError('pattern')">
+                                                pincode should be between 400000 - 499999
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Email</mat-label>
+                                            <input matInput formControlName="email" required>
+                                            <mat-icon matSuffix>email</mat-icon>
+                                            <mat-error
+                                                *ngIf="register.get('email').hasError('required') || register.get('email').touched">
+                                                Please enter a valid email address
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+    
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Password</mat-label>
+                                            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+                                                required>
+                                            <mat-icon matSuffix (click)="hide = !hide">
+                                                {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            <mat-error *ngIf="register.get('password').hasError('required')">
+                                                Password is required
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Address 1</mat-label>
+                                            <textarea matInput formControlName="address1"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Address 2</mat-label>
+                                            <textarea matInput formControlName="address2"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Address 3</mat-label>
+                                            <textarea matInput formControlName="address3"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                        <mat-form-field class="col-xl" appearance="outline">
+                                            <mat-label>Country</mat-label>
+                                            <mat-select formControlName="country_ref_id" required>
+                                                <mat-option [value]="">
+                                                    Select Country
+                                                </mat-option>
+                                                <mat-option [value]="data.id" *ngFor="let data of countryData">
+                                                    {{data.short_name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-icon matSuffix>flag</mat-icon>
+                            
+                                        </mat-form-field></div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                            <mat-form-field class="col-xl" appearance="outline">
+                                                <mat-label>State</mat-label>
+                                                <mat-select formControlName="state_ref_id" required>
+                                                    <mat-option [value]="">
+                                                        Select State
+                                                    </mat-option>
+                                                    <mat-option [value]="data.id" *ngFor="let data of stateData">
+                                                        {{data.state}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-icon matSuffix>flag</mat-icon>
+                                
+                                            </mat-form-field></div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                                                <mat-form-field class="col-xl" appearance="outline">
+                                                    <mat-label>City</mat-label>
+                                                    <mat-select formControlName="city_ref_id" required>
+                                                        <mat-option [value]="">
+                                                            Select City
+                                                        </mat-option>
+                                                        <mat-option [value]="data.id" *ngFor="let data of cityData">
+                                                            {{data.city_name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <mat-icon matSuffix>flag</mat-icon>
+                                    
+                                                </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <label id="example-radio-group-label">Gender:- </label>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        
+                                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                                        [(ngModel)]="myGender" formControlName='gender' required>
+                                        <mat-radio-button class="example-radio-button ml-0" *ngFor="let gender of genders"
+                                            [value]="gender">
+                                            {{gender}}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                    </div>  
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <mat-checkbox class="example-margin" [(ngModel)]="agree"
+                                            formControlName="termcondition">I accept terms
+                                            and conditions
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center;">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                        <button class="btn btn-primary btn-border-radius waves-effect" [disabled]="!register.valid || !agree" mat-raised-button
+                                            >Submit</button>
+                                        <button class="btn btn-danger btn-border-radius waves-effect" type="button" (click)="showList();" mat-button>Cancel</button>
+                                    </div>
+                                </div>
+                                
+    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                   <ngx-datatable #table class="material" [rows]="userFormData" [columns]="tbl_columns"
+                                    [sortType]="'multi'" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+                                    [rowHeight]="'60'" [limit]="10">
+                                    
+                                        <ngx-datatable-column name="Actions" sortable="true" [width]="120" style="padding: 0.4rem 1.2rem;">
+                                            <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex"
+                                                ngx-datatable-cell-template>
+                                                <span>
+                                                    <button class="btn tblActnBtn h-auto" data-toggle="modal"
+                                                        data-target="#editModal" (click)='editUserFormData(row)'>
+                                                        <i class="material-icons">mode_edit</i>
+                                                    </button>
+                                                     <button class="btn tblActnBtn h-auto" (click)='deleteUserFormData(row)'>
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                </span>
+                                            </ng-template>
+                                        </ngx-datatable-column>
+
+                                        <ngx-datatable-column name="First_Name" prop="first_name"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Middle_Name" prop="middle_name"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Last_Name" prop="last_name"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Address1" prop="address1"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Address2" prop="address2"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Address3" prop="address3"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Email" prop="email"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Company" prop="company_ref_id"></ngx-datatable-column>
+                                        <ngx-datatable-column name="Country" prop="country_ref_id"></ngx-datatable-column>
+                                        <ngx-datatable-column name="State" prop="state_ref_id"></ngx-datatable-column>
+                                        <ngx-datatable-column name="City" prop="city_ref_id"></ngx-datatable-column>
+                                        
+        
+                                        
+                                    </ngx-datatable>                                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

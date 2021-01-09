@@ -1,0 +1,15 @@
+[Unit]
+Description=Recon Server 
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/root/rhythmworks-dev-recon/backend/rhythmworks_recon/
+ExecStart=/usr/bin/python3.8 manage.py runserver
+TimeoutSec=30s
+Restart=always
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

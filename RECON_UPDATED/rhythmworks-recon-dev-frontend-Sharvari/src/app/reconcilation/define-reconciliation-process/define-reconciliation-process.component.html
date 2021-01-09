@@ -1,0 +1,219 @@
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Reconcilation Process</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry();"><i class="fa fa-plus"></i>Add New Reconcilation Process</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Reconcilation process</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList()"><i class="fa fa-calendar"></i>List of Reconcilation Process</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List Of Reconcilation Process -->
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Process Name</th>
+                                            <th>Reconcilation Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let rowData of reconProcessMasterData">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius" (click)="editReconProcess(rowData)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius" (click)="deleteReconProcess(rowData)">Delete</button>
+                                            </td>
+                                            <td>{{rowData.name}}</td>
+                                            <td>{{rowData.reconcilation_name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="defineReconProcess" (ngSubmit)="onSubmit()">
+                        <div class="card">
+                            <div class="body">
+
+                                <div class="row clearfix">
+
+                                    <input type="hidden" formControlName="id" id="id" [value]="" class="form-control">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Process Name</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="name" formControlName="name" 
+                                                   [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.name.errors.required">Process name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Reconciliation Name</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="reconcilation_ref_id" formControlName="reconcilation_ref_id" (change)="filterSourceNames($event.target.value)"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.reconcilation_ref_id.errors }">
+                                                <option value="">Select Reconcilation Name</option>
+                                                <option [value]="data.id" *ngFor="let data of reconcilationMstName">{{data.name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.reconcilation_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.reconcilation_ref_id.errors.required">Reconciliation Name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Grid -->
+                                <h5 style="text-align: center;"><strong>Define Reconcilation Process</strong>
+                                    <hr style="border: 1px solid;color:#0f4f8e;">
+                                </h5><br>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="body">
+                                                <div class="table-responsive" formArrayName="initialItemRow">
+                                                    <table id="tableExport"
+                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100 table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align:center">Action</th>
+                                                            <th style="text-align:center">Operation Name</th>
+                                                            <th style="text-align:center">Source Name</th>
+                                                            <th style="text-align:center">API Name</th>
+                                                            <th style="text-align:center">Type of Request</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="main_tbody">
+                                                        <tr *ngFor="let dynamic of defineReconProcess.controls.initialItemRow['controls']; let i = index"
+                                                            [formGroupName]="i">
+
+                                                            <td>
+                                                                <ng-container *ngIf="i==0">
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-primary btn-rounded waves-effect" (click)="addNewRow()">+</button>
+                                                                    </td>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="i>0">
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-danger btn-rounded waves-effect" (click)="deleteRow(i)">-</button>
+                                                                    </td>
+                                                                </ng-container>
+                                                            </td>
+
+                                                            <td class="col_input" style="border:1px solid;">
+                                                                <select class="form-control" id="operation_ref_id{{i+1}}" formControlName="operation_ref_id">
+                                                                    <option value="">Select Operation Name</option>
+                                                                    <option [value]="data.id" *ngFor="let data of operationNames">{{data.master_key}}</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="col_input" style="border:1px solid;">
+                                                                <select class="form-control" id="source_name_ref_id{{i+1}}" formControlName="source_name_ref_id">
+                                                                    <option value="">Select Type Of Request</option>
+                                                                    <option [value]="data.id" *ngFor="let data of filteredSourceNames">{{data.source_name}}</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td class="col_input" style="border:1px solid;">
+                                                                <select class="form-control request" id="api_ref_id{{i+1}}" formControlName="api_ref_id" (change)="filterRequestType($event.target.value, i)">
+                                                                    <option value="">Select API Name</option>
+                                                                    <option [value]="data.id" *ngFor="let data of apiNames">{{data.name}}</option>
+                                                                </select>
+                                                            </td>
+                                                            
+                                                            <td class="col_input" style="border:1px solid;">
+                                                                <input readonly class="form-control" id="request_type_ref_id{{i+1}}_text">
+                                                                <input hidden class="form-control" id="request_type_ref_id{{i+1}}" formControlName="request_type_ref_id">
+                                                            </td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div *ngIf="isLoading">
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    </div>  
+                        
+                    <div class="card">
+                        <div class="body" style="text-align: center;">
+                            <div class="button-demo">
+                                <button type="submit" class="btn btn-primary btn-border-radius waves-effect">{{btnValue}}</button>
+                                <button type="button" (click)="showList()" class="btn btn-danger btn-border-radius waves-effect">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</section>

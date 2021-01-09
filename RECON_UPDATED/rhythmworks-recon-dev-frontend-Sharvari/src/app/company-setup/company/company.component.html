@@ -1,0 +1,464 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 100%;">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Company Master</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList();"><i class="fa fa-calendar"></i> List of Company
+                                            Master</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Company Master</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry"
+                                style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry();"><i class="fa  fa-plus"></i>Add New Company
+                                            Master</button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="companyForm" (ngSubmit)="onSubmit($event)">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <input type="hidden" formControlName="ID" id="ID" value="[ID]" class="form-control">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input type="text" formControlName="company_name" class="form-control"
+                                                placeholder="Company Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.company_name.errors }" />
+                                            <div *ngIf="submitted && f.company_name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.company_name.errors.required">Company Name is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Short Name</label>
+                                            <input type="text" formControlName="company_shortname" class="form-control"
+                                                placeholder="Short Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.company_shortname.errors }" />
+                                            <div *ngIf="submitted && f.company_shortname.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.company_shortname.errors.required">
+                                                    Shortname is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Share ID</label>
+                                            <select formControlName="share_id" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.share_id.errors }">
+                                                <option value="null" default selected hidden>Select Share</option>
+                                                <option *ngFor="let company of companyData" value="{{ company.id }}">
+                                                    {{ company.company_name }}</option>
+                                                <option value=-1>Create own Share ID</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.share_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.share_id.errors.required">Share ID is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="locationSelected" class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <br>
+                                                {{ countryData.name }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="locationSelected" class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>State</label>
+                                            <br>
+                                            {{ stateData.state }}
+                                        </div>
+                                    </div>
+                                    <div *ngIf="locationSelected" class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <br>
+                                            {{ cityData.city_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Location</label>
+                                            <select formControlName="location_ref_id" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.location_ref_id.errors }">
+                                                <option value="null" default selected hidden>Select Location</option>
+                                                <option *ngFor="let location of locationData" value="{{ location.id }}">
+                                                    {{ location.location_name }}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.location_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.location_ref_id.errors.required">Location is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="locationSelected" class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group" *ngFor="let currency of currencyData">
+                                            <label>Currency</label>
+                                            <br>
+                                            <label>{{currency.currency_name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Ownership Status</label>
+                                            <select formControlName="ownership_status_ref_id" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.ownership_status_ref_id.errors }">
+                                                <option value="null" default selected hidden>Select Ownership Status
+                                                </option>
+                                                <option *ngFor="let status of ownershipStatusData"
+                                                    value="{{ status.id }}">{{ status.master_key }}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.ownership_status_ref_id.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.ownership_status_ref_id.errors.required">Ownership Status is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>PinCode</label>
+                                            <input type="number" formControlName="pincode" class="form-control"
+                                                placeholder="Pincode"
+                                                [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.pincode.errors.required">Pincode is
+                                                required</div>
+                                            <div *ngIf="f.pincode.errors.pattern">Provide Valid Pincode</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Contact Person</label>
+                                            <input type="text" formControlName="contact_person_name"
+                                                class="form-control" placeholder="Contact Person Name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.contact_person_name.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.contact_person_name.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contact_person_name.errors.required">Name is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Mobile Number</label>
+                                            <input type="number" formControlName="contact_person_mobile_number"
+                                                class="form-control" placeholder="Mobile Number"
+                                                [ngClass]="{ 'is-invalid': submitted && f.contact_person_mobile_number.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.contact_person_mobile_number.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.contact_person_mobile_number.errors.required">Number is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" formControlName="email" class="form-control"
+                                                placeholder="Email"
+                                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                <div *ngIf="f.email.errors.required">Email is
+                                                    required and should be valid</div>
+                                                <div *ngIf="f.email.errors.email">Email should be valid</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>PAN</label>
+                                            <input type="text" formControlName="pan" class="form-control"
+                                                placeholder="Pan Number"
+                                                [ngClass]="{ 'is-invalid': submitted && f.pan.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.pan.errors" class="invalid-feedback">
+                                            <div *ngIf="f.pan.errors.required">PAN is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>TAN</label>
+                                            <input type="text" formControlName="tan" class="form-control"
+                                                placeholder="TAN Number"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tan.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.tan.errors" class="invalid-feedback">
+                                            <div *ngIf="f.tan.errors.required">TAN is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>GST</label>
+                                            <input type="text" formControlName="gst" class="form-control"
+                                                placeholder="GST"
+                                                [ngClass]="{ 'is-invalid': submitted && f.gst.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.gst.errors" class="invalid-feedback">
+                                            <div *ngIf="f.gst.errors.required">GST is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>CIN</label>
+                                            <input type="text" formControlName="cin" class="form-control"
+                                                placeholder="CIN"
+                                                [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cin.errors.required">CIN is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Is Holding Company? </label>
+                                            <br>
+                                            <label class="form-label">No</label>
+                                            <mat-slide-toggle formControlName='is_holding_company'>Yes
+                                            </mat-slide-toggle>
+                                            <div *ngIf="submitted && f.is_holding_company.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.is_holding_company.errors.required">Field is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Percentage Holding</label>
+                                            <input type="text" formControlName="percentage_holding" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.percentage_holding.errors }" />
+                                        </div>
+                                        <div *ngIf="submitted && f.percentage_holding.errors" class="invalid-feedback">
+                                            <div *ngIf="f.percentage_holding.errors.required">Percentage Holding is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Is Group Company? </label>
+                                            <br>
+                                            <label class="form-label">No</label>
+                                            <mat-slide-toggle formControlName='is_group_company'>Yes</mat-slide-toggle>
+                                        </div>
+                                        <div *ngIf="submitted && f.is_group_company.errors" class="invalid-feedback">
+                                            <div *ngIf="f.is_group_company.errors.required">Selection is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Is This Branch? </label>
+                                            <br>
+                                            <label class="form-label">No</label>
+                                            <mat-slide-toggle formControlName='is_this_branch'
+                                                (change)="isThisBranchChange($event)">Yes</mat-slide-toggle>
+                                        </div>
+                                        <div *ngIf="submitted && f.is_this_branch.errors" class="invalid-feedback">
+                                            <div *ngIf="f.is_this_branch.errors.required">Selection is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isBranch" class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div *ngIf="isBranch" class="form-group">
+                                            <label>Belongs To</label>
+                                            <select formControlName="belongs_to_company_id" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.belongs_to_company_id.errors }">
+                                                <option value="null" default selected hidden>Select Company</option>
+                                                <option *ngFor="let company of companyData" value="{{ company.id }}">
+                                                    {{ company.company_name }}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.belongs_to_company_id.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.belongs_to_company_id.errors.required">Field is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Is This Under Same Management? </label>
+                                            <br>
+                                            <label class="form-label">No</label>
+                                            <mat-slide-toggle formControlName='is_this_under_same_management'
+                                                (change)="isThisUnderSameManagement($event)">Yes</mat-slide-toggle>
+                                        </div>
+                                        <div *ngIf="submitted && f.is_this_under_same_management.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.is_this_under_same_management.errors.required">Selection is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isManagedBy" class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Management Under</label>
+                                            <select formControlName="management_belongs_to_company_id"
+                                                class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.management_belongs_to_company_id.errors }">
+                                                <option value="null" default selected hidden>Select Company</option>
+                                                <option *ngFor="let company of companyData" value="{{ company.id }}">
+                                                    {{ company.company_name }}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.management_belongs_to_company_id.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.management_belongs_to_company_id.errors.required">Field is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>IEC Code</label>
+                                            <input type="number" default=0 formControlName="iec_code"
+                                                class="form-control" placeholder="IEC Code"
+                                                [ngClass]="{ 'is-invalid': submitted && f.iec_code.errors }" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>AD Code</label>
+                                            <input type="text" formControlName="ad_code" class="form-control"
+                                                placeholder="AD Code"
+                                                [ngClass]="{ 'is-invalid': submitted && f.ad_code.errors }" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Import AD Code</label>
+                                            <input type="text" formControlName="import_ad_code" class="form-control"
+                                                placeholder="Import AD Code"
+                                                [ngClass]="{ 'is-invalid': submitted && f.import_ad_code.errors }" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Import IEC Code</label>
+                                            <input type="text" formControlName="import_iec_code" class="form-control"
+                                                placeholder="Import AD Code"
+                                                [ngClass]="{ 'is-invalid': submitted && f.import_iec_code.errors }" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-border-radius waves-effect">{{BTN_VAL}}</button>
+                                    <button type="button" class="btn btn-danger btn-border-radius waves-effect"
+                                        (click)="cancelForm()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport"
+                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Company Name</th>
+                                            <th>Ownership Status</th>
+                                            <th>Pin Code</th>
+                                            <th>Mobile Number</th>
+                                            <th>Email ID</th>
+                                            <th>PAN</th>
+                                            <th>TAN</th>
+                                            <th>GST</th>
+                                            <th>CIN</th>
+                                            <th>Location</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of companyData">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius"
+                                                    (click)="editCompanyData(row)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius"
+                                                    (click)="deleteCompanyData(row)">Delete</button>
+                                            </td>
+                                            <td>{{ row.company_name }}</td>
+                                            <ng-container *ngFor="let ownership of ownershipStatusData">
+                                                <td *ngIf="row.ownership_status_ref_id==ownership.id"> {{ ownership.master_key }}</td>
+                                            </ng-container> 
+                                            <td>{{ row.pincode }} </td>
+                                            <td>{{ row.contact_person_mobile_number }} </td>
+                                            <td>{{ row.email }} </td>
+                                            <td>{{ row.pan }} </td>
+                                            <td>{{ row.tan }} </td>
+                                            <td>{{ row.gst }} </td>
+                                            <td>{{ row.cin }} </td>
+                                            <ng-container *ngFor="let location of locationData">
+                                                <td *ngIf="row.location_ref_id==location.id"> {{ location.location_name }}</td>
+                                            </ng-container> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

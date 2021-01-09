@@ -1,0 +1,328 @@
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Standard-Api</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry"
+                                style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry()"><i class="fa fa-plus"></i>Add New Standrad-Api</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Standard-Api</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList()"><i class="fa fa-calendar"></i>List of Standard-Api</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List of API Hub -->
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport"
+                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Company</th>
+                                            <th>Channel</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <!-- <th>Is It Self API?</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor = "let rowData of standardApiMasterData">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius" (click)="editStandardApi(rowData)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius" (click)="deleteData(rowData)">Delete</button>
+                                            </td>
+                                            <td>{{rowData.company_name}}</td>
+                                            <td>{{rowData.channel_name}}</td>
+                                            <td>{{rowData.from_date}}</td>
+                                            <td>{{rowData.to_date}}</td>
+                                            <!-- <td></td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="defineStandardApiForm" (ngSubmit)="onSubmit()">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <input type="hidden" formControlName="id" id="id" [value]="" class="form-control">
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Company</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="company_ref_id" formControlName="company_ref_id"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.company_ref_id.errors }">
+                                                <option value="">Select Company</option>
+                                                <option [value]="company.id" *ngFor="let company of companyData">{{company.company_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.company_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.company_ref_id.errors.required">Company is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Channel</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="channel_ref_id" formControlName="channel_ref_id"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.channel_ref_id.errors }">
+                                                <option value="">Select Channel</option>
+                                                <option [value]="channel.id" *ngFor="let channel of channelData">{{channel.name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.channel_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.channel_ref_id.errors.required">Channel is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">From Date</label>
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" id="from_date" [min]="todayDate" formControlName="from_date" 
+                                                placeholder="Choose Date" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.from_date.errors }">
+                                                <div *ngIf="submitted && f.from_date.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.from_date.errors.required">From date is required</div>
+                                                </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">To Date</label>
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" id="to_date" formControlName="to_date"
+                                            [ngClass]="{ 'is-invalid': submitted && f.to_date.errors }">
+                                            <div *ngIf="submitted && f.to_date.errors" class="invalid-feedback">
+                                                <div *ngIf="f.to_date.errors.required">To date is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Revision Status</label>
+                                        <div class="form-group">
+                                            <input readonly type="text" id="revision_status" class="form-control" formControlName="revision_status" 
+                                                    placeholder="Effective/Future" [ngClass]="{ 'is-invalid': submitted && f.revision_status.errors }">
+                                            <div *ngIf="submitted && f.revision_status.errors" class="invalid-feedback">
+                                                <div *ngIf="f.revision_status.errors.required">Revision Status is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Is It Self API?</label>
+                                        <div class="form-group">
+                                            <br>
+                                            <label class="form-label">No</label>
+                                            <mat-slide-toggle id="self_api" [checked]="self_api_checked" 
+                                            formControlName="self_api" (change)="isItSelfAPI($event)">Yes</mat-slide-toggle>
+                                        </div>
+                                        <div *ngIf="submitted && f.self_api.errors" class="invalid-feedback">
+                                            <div *ngIf="f.self_api.errors.required">Selection is required</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- GRID for Standard API-->
+                                <h5 style="text-align: center;"><strong>Define Standard API</strong>
+                                    <hr style="border: 1px solid;color:#0f4f8e;">
+                                </h5><br>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="body">
+                                                <div class="table-responsive" formArrayName="initialItemRow">
+                                                    <table id="tableExport"
+                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100 table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center">Action</th>
+                                                                <th style="text-align:center">Type of Request</th>
+                                                                <th style="text-align:center">Type of API</th>
+                                                                <th style="text-align:center">Protocol</th>
+                                                                <th style="text-align:center">Format for Request/Response Data</th>
+                                                                <th style="text-align:center">Authentication</th>
+                                                                <th style="text-align:center">Type of Communication</th>
+                                                                <th style="text-align:center">Session_Key Encryption</th>
+                                                                <th style="text-align:center">Encryption type/Format</th>
+                                                                <th style="text-align:center">Port</th>
+                                                                <th style="text-align:center">Verification Algorithm</th>
+                                                                <th style="text-align:center">End Point URL</th>
+                                                                <th style="text-align:center">Timeout </th>
+                                                            </tr>
+                                                        </thead>
+                                                        
+                                                        <tbody class="main_tbody">
+                                                            <tr *ngFor="let dynamic of defineStandardApiForm.controls.initialItemRow['controls']; let i = index" [formGroupName]="i">
+
+                                                                <td>
+                                                                    <ng-container *ngIf="i==0">
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-primary btn-rounded waves-effect" (click)="addNewRow()">+</button>
+                                                                        </td>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="i>0">
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger btn-rounded waves-effect" (click)="deleteRow(i)">-</button>
+                                                                        </td>
+                                                                    </ng-container>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="request_type_ref_id{{i+1}}" formControlName="request_type_ref_id" style="width:130px;">
+                                                                        <option value="">Select Type Of Request</option>
+                                                                        <option [value]="data.id" *ngFor="let data of typeOfRequest">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="api_type_ref_id{{i+1}}" formControlName="api_type_ref_id" style="width:130px;">
+                                                                        <option value="">Select Type Of API</option>
+                                                                        <option [value]="data.id" *ngFor="let data of typeOfAPI">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="protocol_type_ref_id{{i+1}}" formControlName="protocol_type_ref_id" style="width:130px;">
+                                                                        <option value="">select Protocol</option>
+                                                                        <option [value]="data.id" *ngFor="let data of protocol">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="file_format_type_ref_id{{i+1}}" formControlName="file_format_type_ref_id" style="width:130px;">
+                                                                        <option value="">Select Format for Request</option>
+                                                                        <option [value]="data.id" *ngFor="let data of typeOfFormat">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="authentication_type_ref_id{{i+1}}" formControlName="authentication_type_ref_id" style="width:130px;">
+                                                                        <option value="">Select Authentication</option>
+                                                                        <option [value]="data.id" *ngFor="let data of authentication">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="communication_ref_id{{i+1}}" formControlName="communication_ref_id" style="width:130px;">
+                                                                        <option value="">Select Type of Communication</option>
+                                                                        <option [value]="data.id" *ngFor="let data of typeOfCommunication">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="session_key_encryption_type_ref_id{{i+1}}" formControlName="session_key_encryption_type_ref_id" style="width:130px;">
+                                                                        <option value="">Select Session Key Encryption</option>
+                                                                        <option [value]="encryptionKey.id" *ngFor="let encryptionKey of typeOfEncryptionData">{{encryptionKey.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="encryption_type_ref_id{{i+1}}" formControlName="encryption_type_ref_id" style="width:130px;">
+                                                                        <option value="">Select Encryption Type</option>
+                                                                        <option [value]="data.id" *ngFor="let data of typeOfEncryptionData">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <input class="form-control" type="text" id="port{{i+1}}" formControlName="port" style="width:130px;">
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="verification_algorithm_ref_id{{i+1}}" formControlName="verification_algorithm_ref_id" style="width:130px;">
+                                                                        <option value="">Select Verificcation Algorithm Type</option>
+                                                                        <option [value]="data.id" *ngFor="let data of typeOfEncryptionData">{{data.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <input class="form-control" type="text" id="end_point_url{{i+1}}" formControlName="end_point_url" style="width:130px;">
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <input class="form-control" type="text" id="time_out{{i+1}}" formControlName="time_out" style="width:130px;">
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit" class="btn btn-primary btn-border-radius waves-effect">{{btnValue}}</button>
+                                    <button type="button" (click)="cancelForm()" class="btn btn-danger btn-border-radius waves-effect">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

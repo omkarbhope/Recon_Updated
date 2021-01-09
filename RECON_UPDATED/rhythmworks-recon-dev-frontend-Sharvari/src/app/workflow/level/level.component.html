@@ -1,0 +1,197 @@
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Level</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry"
+                                style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry();"><i class="fa fa-plus"></i>Add New Level</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Define Level</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList();"><i class="fa fa-calendar"></i>List of Levels</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="register" (ngSubmit)="onRegister()">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+
+                                    <input type="hidden" formControlName="id" id="id" [value]="" class="form-control">
+
+                                    
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                            <mat-form-field class="col-xl" appearance="outline">
+                                                <mat-label> Level </mat-label>
+                                                <input matInput formControlName="level" required>
+                                                <mat-icon matSuffix>face</mat-icon>
+                                                <mat-error *ngIf="register.get('level').hasError('required')">
+                                                    Level is required
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                    
+                                </div>
+
+                                <!-- GRID for API HUB -->
+                                <h5 style="text-align: center;"><strong>Define Level</strong>
+                                    <hr style="border: 1px solid;color:#0f4f8e;">
+                                </h5><br>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="body">
+                                                <div class="table-responsive" formArrayName="initialItemRow">
+                                                    <table id="tableExport"
+                                                        class="display table table-hover table-checkable order-column m-t-20 width-per-100 table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center">Action</th>
+                                                                <th style="text-align:center">Activity Name</th>
+                                                                <th style="text-align:center">Sequence Number</th>
+                                                                <th style="text-align:center">Action Name</th>
+                                                                <th style="text-align:center">Next Sequence Number</th>
+                                    
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="main_tbody">
+                                                            <tr *ngFor="let dynamic of register.controls.initialItemRow['controls']; let i = index" [formGroupName]="i">
+
+                                                                <td>
+                                                                    <ng-container *ngIf="i==0">
+                                                                <td>
+                                                                    <button type="button" class="btn btn-primary btn-rounded waves-effect" (click)="addNewRow()">+</button>
+                                                                </td>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="i>0">
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-danger btn-rounded waves-effect"(click)="deleteRow(i)">-</button>
+                                                                    </td>
+                                                                </ng-container>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="activity_ref_id{{i+1}}" formControlName="activity_ref_id">
+                                                                        <option value="">Activity</option>
+                                                                        <option [value]="data.id" *ngFor="let data of activityData">{{data.activity_name}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <input class="form-control" type="text" id="sequence_number{{i+1}}" formControlName="sequence_number">
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <select class="form-control" id="action_ref_id{{i+1}}" formControlName="action_ref_id">
+                                                                        <option value="">Action</option>
+                                                                        <option [value]="data.id" *ngFor="let data of actionData">{{data.action_name}}</option>
+                                                                    </select>
+                                                                </td>
+
+                                                                <td class="col_input">
+                                                                    <input class="form-control" type="text" id="next_sequence_number{{i+1}}" formControlName="next_sequence_number">
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-border-radius waves-effect">{{BTN_VAL}}</button>
+                                    <button type="button" (click)="showList()" class="btn btn-danger btn-border-radius waves-effect">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+         <!-- List of API Hub -->
+         <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport"
+                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Level</th>
+            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of levelData">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius" (click)="editLevelData(data)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius" (click)="deleteLevelData(data)">Delete</button>
+                                            </td>
+                                            <td>{{data.level}}</td>
+                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

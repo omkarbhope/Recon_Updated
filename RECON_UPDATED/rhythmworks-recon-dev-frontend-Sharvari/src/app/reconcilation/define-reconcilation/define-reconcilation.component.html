@@ -1,0 +1,418 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Reconcilation</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry"
+                                style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry()"><i class="fa fa-plus"></i>Add New Reconcilation</button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Reconcilation</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList()"><i class="fa fa-calendar"></i>List of Reconcilation</button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- List of bank reconcilation -->
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Company</th>
+                                            <th>Name</th>
+                                            <th>Recon Type</th>
+                                            <th>Source Name 1</th>
+                                            <th>Source Name 2</th>
+                                            <th>Source Name 3</th>
+                                            <th>Source Name 4</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let rowData of reconMasterData">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius" (click)="editDefineReconcilation(rowData)">Edit</button>
+                                                <button class="btn btn-outline-danger btn-border-radius" (click)="deleteDefineReconcilation(rowData)">Delete</button>
+                                            </td>
+                                            <td>{{rowData.company_name}}</td>
+                                            <td>{{rowData.name}}</td>
+                                            <td>{{rowData.master_key}}</td>
+                                            <td>{{rowData.source_name_1}}</td>
+                                            <td>{{rowData.source_name_2}}</td>
+                                            <td>{{rowData.source_name_3}}</td>
+                                            <td>{{rowData.source_name_4}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add new bank reconcilation -->
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="defineReconcilationForm" (ngSubmit)="onSubmit()">
+
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+
+                                    <input type="hidden" formControlName="id" id="id" [value]="" class="form-control">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <label class="form-label">Company</label>
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="company_ref_id" [ngClass]="{ 'is-invalid': submitted && f.company_ref_id.errors }">
+                                                <option value="">Select Company</option>
+                                                <option [value]="data.id" *ngFor="let data of companyData">{{data.company_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.company_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.company_ref_id.errors.required">Company is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name"
+                                                   [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.name.errors.required">Name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label>Recon Type</label>
+                                            <select class="form-control" formControlName="recon_type_ref_id"
+                                                (change)="showSources($event.target.value)"
+                                                [ngClass]="{ 'is-invalid': submitted && f.recon_type_ref_id.errors }">
+                                                <option value="" selected>Recon Type</option>
+                                                <option [value]="data.id" *ngFor="let data of reconTypeData">{{data.master_key}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.recon_type_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.recon_type_ref_id.errors.required">Recon Type is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8" *ngIf="showTwoWays || showThreeWays || showFourWays">
+                                        <div class="form-group">
+                                            <label>Source Name 1</label>
+                                            <select class="form-control sources" id="source-1" formControlName="source_name1_ref_id" 
+                                                    (change)="filterSources($event.target.id)"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.source_name1_ref_id.errors }">
+                                                <option value="" selected>Source Name 1</option>
+                                                <option id="{{'source-1-' + source.id}}" [value]="source.id" *ngFor="let source of sourceNameMaster">{{source.source_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.source_name1_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.source_name1_ref_id.errors.required">Source Name 1 is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8" *ngIf="showTwoWays || showThreeWays || showFourWays">
+                                        <div class="form-group">
+                                            <label>Source Name 2</label>
+                                            <select class="form-control sources" id="source-2" formControlName="source_name2_ref_id" 
+                                                    (change)="filterSources($event.target.id)"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.source_name2_ref_id.errors }">
+                                                <option value="" selected>Source Name 2</option>
+                                                <option id="{{'source-2-' + source.id}}" [value]="source.id" *ngFor="let source of sourceNameMaster">{{source.source_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.source_name2_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.source_name2_ref_id.errors.required">Source Name 2 is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8" *ngIf="showThreeWays || showFourWays">
+                                        <div class="form-group">
+                                            <label>Source Name 3</label>
+                                            <select class="form-control sources" id="source-3" formControlName="source_name3_ref_id" 
+                                                    (change)="filterSources($event.target.id)"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.source_name3_ref_id.errors }">
+                                                <option value="" selected>Source Name 3</option>
+                                                <option id="{{'source-3-' + source.id}}" [value]="source.id" *ngFor="let source of sourceNameMaster">{{source.source_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.source_name3_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.source_name3_ref_id.errors.required">Source Name 3 is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8" *ngIf="showFourWays">
+                                        <div class="form-group">
+                                            <label>Source Name 4</label>
+                                            <select class="form-control sources" id="source-4" formControlName="source_name4_ref_id" 
+                                                    (change)="filterSources($event.target.id)"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.source_name4_ref_id.errors }">
+                                                <option value="" selected>Source Name 4</option>
+                                                <option id="{{'source-4-' + source.id}}" [value]="source.id" *ngFor="let source of sourceNameMaster">{{source.source_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.source_name4_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.source_name4_ref_id.errors.required">Source Name 4 is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <!-- <label>Recon Rule</label> -->
+                                            <input type="hidden" class="form-control" formControlName="recon_rule">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <!-- <label>Probable Match Rule</label> -->
+                                            <input type="hidden" class="form-control" formControlName="probable_match_rule">
+                                        </div>
+                                    </div>
+
+                                </div> <!-- End Of row clearfix -->
+
+                                <!-- Grid => Source Details-->
+                                <h5 style="text-align: center;"><strong>Define Recon Rule</strong>
+                                    <hr style="border: 1px solid;color:#0f4f8e;">
+                                </h5><br>
+
+                                <div class="body table-responsive" formArrayName="initialItemRow">
+                                    <table id="recon_rule_grid" class="table table-striped" style="border:1px solid;">
+                                        <thead>
+                                            <tr class="table_header_field_names">
+                                                <th>Action</th>
+                                                <th>Field Name For Source 1</th>
+                                                <th>Field Name For Source 2</th>
+                                                <th>Field Name For Source 3</th>
+                                                <th>Field Name For Source 4</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="main_tbody">
+
+                                            <tr *ngFor="let dynamic of defineReconcilationForm.controls.initialItemRow['controls']; let i = index" [formGroupName]="i">
+                                                
+                                                <ng-container *ngIf="i==0">
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-primary btn-rounded waves-effect"
+                                                            (click)="addNewRow()">+
+                                                        </button>
+                                                        <input type="hidden" class="form-control" formControlName="details_id" [ngModel]="i+1">
+                                                        <input type="hidden" class="form-control" formControlName="probable_match_flag" value="N">
+                                                        
+                                                        <!-- probable_match by default N first grid , Y second grid -->
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container *ngIf="i>0">
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-rounded waves-effect"
+                                                            (click)="deleteRow(i)">-
+                                                        </button>
+                                                        <input type="hidden" class="form-control" formControlName="details_id" [ngModel]="i+1">
+                                                    </td>
+                                                </ng-container>
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control test" id="source_name_1_field_id{{i+1}}" formControlName="source_name_1_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Field Name For Source 1</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-1']" [attr.sectionId]="data.section_identifier_id" [attr.headerRefId]="data.header_ref_id">
+                                                            {{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="source_name_1_ref_id{{i+1}}" formControlName="source_name_1_ref_id">
+                                                    <input type="hidden" id="source_name_1_field_name{{i+1}}" formControlName="source_name_1_field_name">
+                                                    <input type="hidden" id="source_name_1_section_identifier_id{{i+1}}" formControlName="source_name_1_section_identifier_id">
+                                                </td>
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control" id="source_name_2_field_id{{i+1}}" formControlName="source_name_2_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Select Source Name 2</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-2']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">
+                                                            {{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="source_name_2_ref_id{{i+1}}" formControlName="source_name_2_ref_id">
+                                                    <input type="hidden" id="source_name_2_field_name{{i+1}}" formControlName="source_name_2_field_name">
+                                                    <input type="hidden" id="source_name_2_section_identifier_id{{i+1}}" formControlName="source_name_2_section_identifier_id">
+                                                </td>
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control" id="source_name_3_field_id{{i+1}}" formControlName="source_name_3_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Select Source Name 3</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-3']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">
+                                                            {{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="source_name_3_ref_id{{i+1}}" formControlName="source_name_3_ref_id">
+                                                    <input type="hidden" id="source_name_3_field_name{{i+1}}" formControlName="source_name_3_field_name">
+                                                    <input type="hidden" id="source_name_3_section_identifier_id{{i+1}}" formControlName="source_name_3_section_identifier_id">
+                                                </td>
+
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control" id="source_name_4_field_id{{i+1}}" formControlName="source_name_4_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Select Source Name 4</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-4']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">
+                                                            {{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="source_name_4_ref_id{{i+1}}" formControlName="source_name_4_ref_id">
+                                                    <input type="hidden" id="source_name_4_field_name{{i+1}}" formControlName="source_name_4_field_name">
+                                                    <input type="hidden" id="source_name_4_section_identifier_id{{i+1}}" formControlName="source_name_4_section_identifier_id">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <!-- Probable match rule grid -->
+                                <h5 style="text-align: center;"><strong>Define Probable Match Rule</strong>
+                                    <hr style="border: 1px solid;color:#0f4f8e;">
+                                </h5><br>
+
+                                <div class="body table-responsive" formArrayName="initialItemRow1">
+                                    <table id="probable_match_rule" class="table table-striped"
+                                        style="border:1px solid;">
+                                        <thead>
+                                            <tr class="table_header_field_names">
+                                                <th>Action</th>
+                                                <th>Field Name For Source 1</th>
+                                                <th>Field Name For Source 2</th>
+                                                <th>Field Name For Source 3</th>
+                                                <th>Field Name For Source 4</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="main_tbody1">
+                                            <tr *ngFor="let dynamic of defineReconcilationForm.controls.initialItemRow1['controls']; let i = index"
+                                                [formGroupName]="i">
+
+                                                <ng-container *ngIf="i==0">
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-primary btn-rounded waves-effect" (click)="addNewRow1()">+
+                                                        </button>
+                                                        <input type="hidden" class="form-control" formControlName="details_id" [ngModel]="i+1">
+                                                        <input type="hidden" class="form-control" formControlName="probable_match_flag" value="Y">
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container *ngIf="i>0">
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-rounded waves-effect"
+                                                            (click)="deleteRow1(i)">-
+                                                        </button>
+                                                        <input type="hidden" class="form-control" formControlName="details_id" [ngModel]="i+1">
+                                                    </td>
+                                                </ng-container>
+
+                                                <!-- id="probableSourceName-1" formControlName="source_name1_field_id"  -->
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control" id="p_source_name_1_field_id{{i+1}}" formControlName="source_name_1_field_id"  (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Field Name For Source 1</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-1']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">{{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="p_source_name_1_ref_id{{i+1}}" formControlName="source_name_1_ref_id">
+                                                    <input type="hidden" id="p_source_name_1_field_name{{i+1}}" formControlName="source_name_1_field_name">
+                                                    <input type="hidden" id="p_source_name_1_section_identifier_id{{i+1}}" formControlName="source_name_1_section_identifier_id">
+                                                </td>
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control"  id="p_source_name_2_field_id{{i+1}}" formControlName="source_name_2_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Field Name For Source 2</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-2']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">{{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="p_source_name_2_ref_id{{i+1}}" formControlName="source_name_2_ref_id">
+                                                    <input type="hidden" id="p_source_name_2_field_name{{i+1}}" formControlName="source_name_2_field_name">
+                                                    <input type="hidden" id="p_source_name_2_section_identifier_id{{i+1}}" formControlName="source_name_2_section_identifier_id">
+                                                </td>
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control" id="p_source_name_3_field_id{{i+1}}" formControlName="source_name_3_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Field Name For Source 3</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-3']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">{{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="p_source_name_3_ref_id{{i+1}}" formControlName="source_name_3_ref_id">
+                                                    <input type="hidden" id="p_source_name_3_field_name{{i+1}}" formControlName="source_name_3_field_name">
+                                                    <input type="hidden" id="p_source_name_3_section_identifier_id{{i+1}}" formControlName="source_name_3_section_identifier_id">
+                                                </td>
+
+                                                <td class="col_input" style="border:1px solid;">
+                                                    <select class="form-control" id="p_source_name_4_field_id{{i+1}}" formControlName="source_name_4_field_id" (change)="changeSourceName($event.target, i)">
+                                                        <option value="">Field Name For Source 4</option>
+                                                        <option [value]="data.id" *ngFor="let data of gridSourceNameDetails['source-4']" [attr.sectionId]=data.section_identifier_id [attr.headerRefId]="data.header_ref_id">{{data.field_name}}</option>
+                                                    </select>
+                                                    <input type="hidden" id="p_source_name_4_ref_id{{i+1}}" formControlName="source_name_4_ref_id">
+                                                    <input type="hidden" id="p_source_name_4_field_name{{i+1}}" formControlName="source_name_4_field_name">
+                                                    <input type="hidden" id="p_source_name_4_section_identifier_id{{i+1}}" formControlName="source_name_4_section_identifier_id">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div> <!-- end of body  -->
+                        </div> <!-- end of card -->
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-border-radius waves-effect">{{submitButton}}</button>
+                                    <button type="button" (click)="showList()"
+                                        class="btn btn-danger btn-border-radius waves-effect">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div> <!-- end of Add new bank reconcilation -->
+
+    </div>
+</section>

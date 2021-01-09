@@ -1,0 +1,384 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="height: 79px;margin-top: -46px;width: 1090px;margin-left: -36px;">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="new_entry_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Source</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_list" style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showList();"><i class="fa fa-calendar"></i> List of
+                                            Source
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="list_title">
+                                <div class="header">
+                                    <h2>
+                                        <strong>List of Source</strong>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="btn_new_entry"
+                                style="text-align: right;">
+                                <div class="header">
+                                    <h2>
+                                        <button class="btn btn-primary btn-rounded waves-effect" type="button"
+                                            (click)="showNewEntry();"><i class="fa  fa-plus"></i>Add New
+                                            Source
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new_entry_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form [formGroup]="sourceForm" (ngSubmit)="onSubmit()">
+                        <div class="card">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <input type="hidden" formControlName="id" id="id" value="[id]" class="form-control">
+                                    <!-- Below Div element -->
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Company Name</label>
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="company_ref_id"
+                                                id="company_name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.company_ref_id.errors }">
+                                                <option value="null">Select Company Name</option>
+                                                <option *ngFor="let company of companydata" value="{{company.id}}">
+                                                    {{company.company_name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.company_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.company_ref_id.errors.required">Company Name is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Channel Name</label>
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="channel_ref_id"
+                                                id="channel_ref_id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.channel_ref_id.errors }">
+                                                <option value="null">Select Channel Name</option>
+                                                <option *ngFor="let channel of channeldata" value="{{channel.id}}">
+                                                    {{channel.name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.channel_ref_id.errors" class="invalid-feedback">
+                                                <div *ngIf="f.channel_ref_id.errors.required">Channel Name is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Source Name</label>
+                                            <input type="text" formControlName="source_name"
+                                                placeholder="Enter Source Name" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.source_name.errors }" />
+                                            <div *ngIf="submitted && f.source_name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.source_name.errors.required">Source Name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Below Div -->
+                                <div class="row clearfix">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Type of Network</label>
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="network_type_ref_id"
+                                                id="Network"
+                                                [ngClass]="{ 'is-invalid': submitted && f.network_type_ref_id.errors }">
+                                                <option value="null">Select Network</option>
+                                                <option *ngFor="let network of networks_types"
+                                                    value={{network.id}}>
+                                                    {{network.master_key}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.network_type_ref_id.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.network_type_ref_id.errors.required">Network is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Type of File</label>
+                                        <div class="form-group">
+                                            <select class="form-control" formControlName="file_type_ref_id"
+                                                id="file_type_ref_id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.file_type_ref_id.errors }">
+                                                <option value="null">Select File</option>
+                                                <option *ngFor="let file of file_types" value="{{file.id}}">
+                                                    {{file.master_key}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.file_type_ref_id.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.file_type_ref_id .errors.required">File is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Version No.</label>
+                                            <input readonly type="text" formControlName="version_number" placeholder="1"
+                                                class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.version_number.errors }" />
+                                            <div *ngIf="submitted && f.version_number.errors" class="invalid-feedback">
+                                                <div *ngIf="f.version_number.errors.required">Version No is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--                                    from date here-->
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">From Date</label>
+                                            <input type="date" [min]="todayDate" formControlName="from_date"
+                                                placeholder="todayDate" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.from_date.errors }" />
+                                            <div *ngIf="submitted && f.from_date.errors" class="invalid-feedback">
+                                                <div *ngIf="f.from_date.errors.required">From Date is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8" hidden>
+                                        <div class="form-group">
+                                            <label class="form-label">From Date</label>
+                                            <input type="date" value="2099-12-31" [min]="todayDate"
+                                                formControlName="to_date" placeholder="todayDate" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.to_date.errors }" />
+                                            <div *ngIf="submitted && f.to_date.errors" class="invalid-feedback">
+                                                <div *ngIf="f.to_date.errors.required">From Date is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Status</label>
+                                            <input readonly type="text" formControlName="revision_status"
+                                                placeholder="Effective/Future" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.revision_status.errors }" />
+                                            <div *ngIf="submitted && f.revision_status.errors" class="invalid-feedback">
+                                                <div *ngIf="f.revision_status.errors.required">Status is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="body">
+                                                <div class="table-responsive" formArrayName="initialItemRow">
+                                                    <table id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100
+                                                        table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="text-align:center">
+                                                                    Sr.No.</th>
+                                                                <th style="text-align:center">
+                                                                    Section</th>
+                                                                <th style="text-align:center">
+                                                                    Name of Field</th>
+                                                                <th style="text-align:center">
+                                                                    Type of Field</th>
+                                                                <th style="text-align:center">
+                                                                    Length</th>
+                                                                <th style="text-align:center">
+                                                                    Is Key?</th>
+                                                                <th style="text-align:center">
+                                                                    Is Primary Key?</th>
+                                                                <th style="text-align:center">
+                                                                    Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="main_tbody">
+                                                            <tr *ngFor="let dynamic of sourceForm.controls.initialItemRow['controls']; let i = index"
+                                                                [formGroupName]="i">
+                                                                <td>
+                                                                    <input readonly formControlName="sr_no"
+                                                                        placeholder="{{i + 1}}" class="form-control"
+                                                                        type="text" value="{{i + 1}}" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control"  (change)="checkValue($event)"
+                                                                        formControlName="section_identifier_id"
+                                                                        id="section_identifier_id{{i}}">
+                                                                        <option value="0">Select Section</option>
+                                                                        <!--                                                                        <option *ngFor="let section of section_types1"-->
+                                                                        <option *ngFor="let section of section_types"
+                                                                            value="{{section.id}}">
+                                                                            {{section.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input formControlName="field_name"
+                                                                        placeholder="Enter Field Name"
+                                                                        class="form-control" type="text" />
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control"
+                                                                        formControlName="field_data_type_ref_id"
+                                                                        id="field_data_type_ref_id{{i}}">
+                                                                        <option value="0">Select Field</option>
+                                                                        <option *ngFor="let field of field_types"
+                                                                            value="{{field.id}}">
+                                                                            {{field.master_key}}</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="field-length-col">
+                                                                    <input formControlName="field_length"
+                                                                        class="form-control" type="text"
+                                                                        id="length{{i}}" placeholder="Enter valid integer" />
+                                                                    <select class="form-control" id="date-format-feild" style="display:none;">
+                                                                        <option selected value="">Select Date Format</option>
+                                                                        <option *ngFor="let dateFormat of dateFormats"
+                                                                            value="{{dateFormat}}">
+                                                                            {{dateFormat}}</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="col-6">
+                                                                        <mat-slide-toggle formControlName="is_key_field"
+                                                                            id="is_key_field{{i}}">
+                                                                            <!--                                                                        Write relevant code here-->
+                                                                        </mat-slide-toggle>
+                                                                    </div>
+                                                                </td>
+<!--                                                                <ng-container *ngIf="section_identifier_id == 1">-->
+                                                                <td>
+                                                                    <div class="col-6">
+                                                                        <mat-slide-toggle  formControlName="is_primary_field" id="is_primary_field{{i}}">
+                                                                            <!--                                                                        Write relevant code here-->
+                                                                        </mat-slide-toggle>
+                                                                    </div>
+                                                                </td>
+<!--                                                                </ng-container>-->
+                                                                <ng-container *ngIf="i==0">
+                                                                    <td>
+                                                                        <button type="button"
+                                                                            class="btn btn-outline-success btn-border-radius"
+                                                                            (click)="addNewRow()">+
+                                                                        </button>
+                                                                    </td>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="i>0">
+                                                                    <td>
+                                                                        <button type="button"
+                                                                            class="btn btn-outline-danger btn-border-radius"
+                                                                            (click)="deleteRow(i)">-
+                                                                        </button>
+                                                                    </td>
+                                                                </ng-container>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="body" style="text-align: center;">
+                                <div class="button-demo">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-border-radius waves-effect">{{BTN_VAL}}</button>
+                                    <button type="button" class="btn btn-danger btn-border-radius waves-effect"
+                                        (click)="showList();">Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="list_form">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table id="tableExport"
+                                    class="display table table-hover table-checkable order-column m-t-20 width-per-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Company Name</th>
+                                            <th>Channel Name</th>
+                                            <th>Source Name</th>
+                                            <th>Type of Network</th>
+                                            <th>Type of File</th>
+                                            <th>From Date</th>
+                                            <th>To Date</th>
+                                            <th>Status</th>
+                                            <th>Version No</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of sourcedata">
+                                            <td>
+                                                <button class="btn btn-outline-success btn-border-radius"
+                                                    (click)="editSource(row)">Edit
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-border-radius"
+                                                    (click)="deleteSource(row)">Delete
+                                                </button>
+                                            </td>
+                                            <td>{{row.company_name}}</td>
+                                            <td>{{row.channel_name}}</td>
+                                            <td>{{row.source_name}}</td>
+                                            <!-- <ng-container *ngFor="let n of networks_types;">
+                                                <ng-container *ngIf="row.network_type_ref_id===n.master_value">
+                                                    <td> {{n.master_key}}</td>
+                                                </ng-container>
+                                            </ng-container>
+                                            <ng-container *ngFor="let s of file_types;">
+                                                <ng-container *ngIf="row.file_type_ref_id==s.master_value">
+                                                    <td> {{s.master_key}}</td>
+                                                </ng-container>
+                                            </ng-container> -->
+                                            <td>{{row.network_type}}</td>
+                                            <td>{{row.file_type}}</td>
+                                            <td>{{row.from_date}}</td>
+                                            <td>{{row.to_date}}</td>
+                                            <td>{{row.revision_status}}</td>
+                                            <td>{{row.version_number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
